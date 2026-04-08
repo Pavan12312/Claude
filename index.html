@@ -1,28 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pavan — Engineer</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-:root {
---bg: #07080a;
---surface: #0e1014;
---border: rgba(255,255,255,0.07);
---accent: #c9a96e;
---accent2: #7c6fcd;
---text: #e8e4dc;
---muted: #6b6a67;
---serif: 'Playfair Display', Georgia, serif;
---sans: 'DM Sans', sans-serif;
-}
-
-html { scroll-behavior: smooth; }
-
-body {
+<!DOCTYPE html>  <html lang="en">    <head>      <meta charset="UTF-8">      
+<meta name="viewport" content="width=device-width, initial-scale=1.0">      
+<title>Pavan — Engineer</title>      
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">      
+<style>      
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }  :root {    
+--bg: #07080a;    
+--surface: #0e1014;    
+--border: rgba(255,255,255,0.07);    
+--accent: #c9a96e;    
+--accent2: #7c6fcd;    
+--text: #e8e4dc;    
+--muted: #6b6a67;    
+--serif: 'Playfair Display', Georgia, serif;    
+--sans: 'DM Sans', sans-serif;    
+}  html { scroll-behavior: smooth; }  body {
 background: var(--bg);
 color: var(--text);
 font-family: var(--sans);
@@ -31,7 +22,7 @@ overflow-x: hidden;
 cursor: default;
 }
 
-/* NOISE */
+/* ── NOISE OVERLAY ── */
 body::before {
 content: '';
 position: fixed;
@@ -42,7 +33,7 @@ pointer-events: none;
 z-index: 9999;
 }
 
-/* NAV */
+/* ── NAV ── */
 nav {
 position: fixed;
 top: 0; left: 0; right: 0;
@@ -88,7 +79,7 @@ transition: color 0.3s;
 
 .nav-links a:hover { color: var(--text); }
 
-/* HERO */
+/* ── HERO ── */
 .hero {
 min-height: 100vh;
 display: grid;
@@ -191,28 +182,37 @@ transition: border-color 0.3s, color 0.3s;
 
 .btn-ghost:hover { border-color: var(--muted); color: var(--text); }
 
-/* HERO RIGHT */
+/* ── HERO RIGHT ── */
 .hero-right {
 position: relative;
 overflow: hidden;
 }
 
+.hero-img-wrap {
+position: absolute;
+inset: 0;
+display: flex;
+align-items: flex-end;
+justify-content: center;
+}
+
 .hero-photo-placeholder {
 width: 100%;
 height: 100%;
+background: linear-gradient(160deg, #0e1014 0%, #131820 50%, #0a0c10 100%);
+display: flex;
+align-items: center;
+justify-content: center;
 }
 
-.hero-img {
-width: 100%;
-height: 100%;
-object-fit: cover;
-transition: transform 1.5s ease, filter 1s ease;
-filter: brightness(0.85) contrast(1.05);
-}
-
-.hero-right:hover .hero-img {
-transform: scale(1.05);
-filter: brightness(1) contrast(1.1);
+.hero-monogram {
+font-family: var(--serif);
+font-size: 200px;
+font-weight: 700;
+color: rgba(201,169,110,0.08);
+line-height: 1;
+user-select: none;
+letter-spacing: -0.05em;
 }
 
 .hero-right-overlay {
@@ -221,7 +221,7 @@ inset: 0;
 background: linear-gradient(to right, var(--bg) 0%, transparent 30%);
 }
 
-/* BADGE */
+/* floating badge */
 .hero-badge {
 position: absolute;
 bottom: 60px;
@@ -254,7 +254,7 @@ color: var(--text);
 line-height: 1.4;
 }
 
-/* SCROLL */
+/* ── SCROLL HINT ── */
 .scroll-hint {
 position: absolute;
 bottom: 40px;
@@ -281,6 +281,7 @@ overflow: hidden;
 content: '';
 position: absolute;
 top: -100%;
+left: 0;
 width: 100%;
 height: 100%;
 background: var(--accent);
@@ -292,54 +293,402 @@ animation: scrollDown 2s ease-in-out infinite;
 100% { top: 100%; }
 }
 
-/* (बाकी code SAME hai — About, Timeline, Footer unchanged) */
+/* ── ABOUT SECTION ── */
+.section {
+padding: 120px 80px;
+max-width: 1200px;
+margin: 0 auto;
+}
+
+.section-label {
+font-size: 11px;
+letter-spacing: 0.25em;
+text-transform: uppercase;
+color: var(--accent);
+margin-bottom: 20px;
+display: flex;
+align-items: center;
+gap: 12px;
+}
+
+.section-label::before {
+content: '';
+width: 32px;
+height: 1px;
+background: var(--accent);
+}
+
+.about-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 80px;
+align-items: start;
+}
+
+.about-title {
+font-family: var(--serif);
+font-size: clamp(36px, 4vw, 56px);
+line-height: 1.1;
+font-weight: 400;
+}
+
+.about-title strong {
+font-weight: 700;
+font-style: italic;
+}
+
+.about-right p {
+font-size: 16px;
+line-height: 1.85;
+color: var(--muted);
+margin-bottom: 24px;
+}
+
+.about-right p:last-child { margin-bottom: 0; }
+
+/* ── TIMELINE ── */
+.timeline-section {
+background: var(--surface);
+border-top: 1px solid var(--border);
+border-bottom: 1px solid var(--border);
+padding: 80px 0;
+}
+
+.timeline-inner {
+max-width: 1200px;
+margin: 0 auto;
+padding: 0 80px;
+}
+
+.timeline {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 0;
+margin-top: 60px;
+border-left: 1px solid var(--border);
+}
+
+.timeline-item {
+padding: 0 40px 0 40px;
+border-right: 1px solid var(--border);
+position: relative;
+}
+
+.timeline-item::before {
+content: '';
+position: absolute;
+top: 4px;
+left: -5px;
+width: 9px;
+height: 9px;
+background: var(--accent);
+border-radius: 50%;
+}
+
+.timeline-year {
+font-size: 11px;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(--accent);
+margin-bottom: 12px;
+}
+
+.timeline-role {
+font-family: var(--serif);
+font-size: 22px;
+margin-bottom: 8px;
+}
+
+.timeline-org {
+font-size: 14px;
+color: var(--muted);
+line-height: 1.6;
+}
+
+/* ── QUOTE ── */
+.quote-section {
+padding: 120px 80px;
+max-width: 900px;
+margin: 0 auto;
+text-align: center;
+}
+
+blockquote {
+font-family: var(--serif);
+font-size: clamp(24px, 3vw, 42px);
+font-style: italic;
+line-height: 1.4;
+color: var(--text);
+position: relative;
+}
+
+blockquote::before {
+content: '"';
+position: absolute;
+top: -40px;
+left: 50%;
+transform: translateX(-50%);
+font-size: 120px;
+line-height: 1;
+color: var(--accent);
+opacity: 0.2;
+font-style: normal;
+}
+
+.quote-author {
+margin-top: 32px;
+font-size: 12px;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(--muted);
+}
+
+/* ── CONNECT ── */
+.connect-section {
+background: var(--surface);
+border-top: 1px solid var(--border);
+}
+
+.connect-inner {
+max-width: 1200px;
+margin: 0 auto;
+padding: 80px 80px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+gap: 60px;
+}
+
+.connect-title {
+font-family: var(--serif);
+font-size: clamp(36px, 4vw, 56px);
+line-height: 1.1;
+}
+
+.connect-title em {
+font-style: italic;
+color: var(--accent);
+}
+
+.connect-right {
+display: flex;
+flex-direction: column;
+gap: 16px;
+flex-shrink: 0;
+}
+
+.social-link {
+display: flex;
+align-items: center;
+gap: 16px;
+padding: 18px 24px;
+border: 1px solid var(--border);
+color: var(--text);
+text-decoration: none;
+transition: border-color 0.3s, background 0.3s;
+min-width: 260px;
+}
+
+.social-link:hover {
+border-color: var(--accent);
+background: rgba(201,169,110,0.04);
+}
+
+.social-icon {
+width: 36px;
+height: 36px;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.social-icon svg { width: 18px; height: 18px; }
+
+.social-info {}
+
+.social-platform {
+font-size: 11px;
+letter-spacing: 0.18em;
+text-transform: uppercase;
+color: var(--accent);
+margin-bottom: 2px;
+}
+
+.social-handle {
+font-size: 15px;
+font-family: var(--serif);
+}
+
+/* ── FOOTER ── */
+footer {
+padding: 32px 80px;
+border-top: 1px solid var(--border);
+display: flex;
+justify-content: space-between;
+align-items: center;
+max-width: 1200px;
+margin: 0 auto;
+}
+
+.footer-logo {
+font-family: var(--serif);
+font-size: 18px;
+color: var(--muted);
+}
+
+.footer-copy {
+font-size: 12px;
+color: var(--muted);
+letter-spacing: 0.05em;
+}
+
+/* ── ANIMATIONS ── */
+.fade-up {
+opacity: 0;
+transform: translateY(30px);
+transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
+}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+.fade-up:nth-child(2) { transition-delay: 0.1s; }
+.fade-up:nth-child(3) { transition-delay: 0.2s; }
+.fade-up:nth-child(4) { transition-delay: 0.3s; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+nav { padding: 20px 24px; }
+.nav-links { display: none; }
+.hero { grid-template-columns: 1fr; }
+.hero-left { padding: 100px 24px 60px; }
+.hero-right { display: none; }
+.section { padding: 80px 24px; }
+.about-grid { grid-template-columns: 1fr; gap: 40px; }
+.timeline-inner { padding: 0 24px; }
+.timeline { grid-template-columns: 1fr; border-left: 1px solid var(--border); }
+.timeline-item { padding: 0 0 40px 40px; border-right: none; }
+.quote-section { padding: 80px 24px; }
+.connect-inner { flex-direction: column; padding: 60px 24px; }
+.social-link { min-width: unset; width: 100%; }
+footer { padding: 24px; flex-direction: column; gap: 12px; text-align: center; }
+.scroll-hint { left: 24px; }
+}
 </style>
-</head>
 
-<body>
-
-<nav id="nav">
-<div class="nav-logo">P<span>.</span>avan</div>
-<ul class="nav-links">
-<li><a href="#about">About</a></li>
-<li><a href="#journey">Journey</a></li>
-<li><a href="#connect">Connect</a></li>
-</ul>
-</nav>
-
-<section class="hero">
-<div class="hero-left">
-<div class="hero-eyebrow fade-up visible">Engineer & Civil Servant</div>
-<h1 class="fade-up visible">Pavan<br><em>Meena</em></h1>
-<p class="hero-sub fade-up visible">
-NIT Kurukshetra graduate, serving the Government of India.
-</p>
-</div>
-
-<div class="hero-right">
-<div class="hero-photo-placeholder">
-<img src="your-photo.jpg" class="hero-img">
-</div>
-<div class="hero-right-overlay"></div>
-
-<div class="hero-badge">
-<div class="hero-badge-label">Currently</div>
-<div class="hero-badge-text">Government of India<br>Ranchi, Jharkhand</div>
-</div>
-</div>
-
-<div class="scroll-hint">
-<div class="scroll-line"></div>
-Scroll
-</div>
-</section>
-
-<script>
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-nav.classList.toggle('scrolled', window.scrollY > 40);
-});
-</script>
-
+</head>      
+<body>  <!-- NAV -->  <nav id="nav">      
+  <div class="nav-logo">P<span>.</span>avan</div>      
+  <ul class="nav-links">      
+    <li><a href="#about">About</a></li>      
+    <li><a href="#journey">Journey</a></li>      
+    <li><a href="#connect">Connect</a></li>      
+  </ul>      
+</nav>  <!-- HERO -->  <section class="hero">      
+  <div class="hero-left">      
+    <div class="hero-eyebrow fade-up visible">Engineer &amp; Civil Servant</div>      
+    <h1 class="fade-up visible">Pavan<br><em>Meena</em></h1>      
+    <p class="hero-sub fade-up visible">      
+      NIT Kurukshetra graduate, serving the Government of India.       
+      A journey forged across Rajasthan to the hills of Ranchi.      
+    </p>      
+    <div class="hero-cta-row fade-up visible">      
+      <a href="https://instagram.com/pavanm_57" target="_blank" class="btn-primary">      
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>      
+        Follow on Instagram      
+      </a>      
+      <a href="#about" class="btn-ghost">About me ↓</a>      
+    </div>      
+  </div>    <div class="hero-right">      
+    <div class="hero-photo-placeholder">      
+      <div class="hero-monogram">P</div>      
+    </div>      
+    <div class="hero-right-overlay"></div>      
+    <div class="hero-badge">      
+      <div class="hero-badge-label">Currently</div>      
+      <div class="hero-badge-text">Government of India<br>Ranchi, Jharkhand</div>      
+    </div>      
+  </div>    <div class="scroll-hint">      
+    <div class="scroll-line"></div>      
+    Scroll      
+  </div>      
+</section>  <!-- ABOUT -->  <section id="about">      
+  <div class="section">      
+    <div class="section-label">About</div>      
+    <div class="about-grid">      
+      <div>      
+        <h2 class="about-title fade-up">An engineer who chose <strong>purpose</strong> over profit.</h2>      
+      </div>      
+      <div class="about-right">      
+        <p class="fade-up">      
+          Born and raised in Rajasthan, Pavan pursued engineering at the prestigious NIT Kurukshetra — one of India's premier technical institutions. But his ambitions always lay beyond the private sector.      
+        </p>      
+        <p class="fade-up">      
+          Clearing competitive examinations, he joined the Government of India, bringing technical expertise into public service. Today he's based in Ranchi, Jharkhand — a city that represents his north-to-east journey across this vast nation.      
+        </p>      
+        <p class="fade-up">      
+          Quiet, precise, and deliberate — he lets his work speak louder than words.      
+        </p>      
+      </div>      
+    </div>      
+  </div>      
+</section>  <!-- TIMELINE -->  <div class="timeline-section" id="journey">      
+  <div class="timeline-inner">      
+    <div class="section-label">Journey</div>      
+    <div class="timeline">      
+      <div class="timeline-item fade-up">      
+        <div class="timeline-year">Origin</div>      
+        <div class="timeline-role">Rajasthan</div>      
+        <div class="timeline-org">The land of deserts, forts, and resilience. Where it all began.</div>      
+      </div>      
+      <div class="timeline-item fade-up">      
+        <div class="timeline-year">Engineering</div>      
+        <div class="timeline-role">NIT Kurukshetra</div>      
+        <div class="timeline-org">National Institute of Technology — Haryana. Four years of grind, growth, and graduation.</div>      
+      </div>      
+      <div class="timeline-item fade-up">      
+        <div class="timeline-year">Now</div>      
+        <div class="timeline-role">Govt. of India</div>      
+        <div class="timeline-org">Civil service in Ranchi, Jharkhand. Serving the nation with technical precision.</div>      
+      </div>      
+    </div>      
+  </div>      
+</div>  <!-- QUOTE -->  <div class="quote-section">      
+  <blockquote class="fade-up">      
+    Not here to impress everyone.<br>Just the right one.      
+  </blockquote>      
+  <div class="quote-author fade-up">— Pavan</div>      
+</div>  <!-- CONNECT -->  <div class="connect-section" id="connect">      
+  <div class="connect-inner">      
+    <div>      
+      <div class="section-label">Connect</div>      
+      <h2 class="connect-title fade-up">Let's be in<br><em>touch.</em></h2>      
+    </div>      
+    <div class="connect-right">      
+      <a href="https://instagram.com/pavanm_57" target="_blank" class="social-link">      
+        <div class="social-icon">      
+          <svg viewBox="0 0 24 24" fill="none" stroke="#c9a96e" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#c9a96e" stroke="none"/></svg>      
+        </div>      
+        <div class="social-info">      
+          <div class="social-platform">Instagram</div>      
+          <div class="social-handle">@pavanm_57</div>      
+        </div>      
+        <div style="margin-left:auto;color:var(--muted);font-size:18px;">→</div>      
+      </a>      
+    </div>      
+  </div>      
+</div>  <!-- FOOTER -->  <footer>      
+  <div class="footer-logo">Pavan.</div>      
+  <div class="footer-copy">Engineer · Government of India · Ranchi</div>      
+</footer>  <script>      
+// Nav scroll effect      
+const nav = document.getElementById('nav');      
+window.addEventListener('scroll', () => {      
+  nav.classList.toggle('scrolled', window.scrollY > 40);      
+});    // Intersection observer for fade-up  
+const obs = new IntersectionObserver((entries) => {  
+entries.forEach(e => {  
+if (e.isIntersecting) e.target.classList.add('visible');  
+});  
+}, { threshold: 0.15 });  document.querySelectorAll('.fade-up:not(.visible)').forEach(el => obs.observe(el));
+</script>  
 </body>
-</html>
+
+</html>  
